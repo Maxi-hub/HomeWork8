@@ -42,27 +42,28 @@ void PrintArray2d(int[,] array2d)
     }
 }
 
-int[,] NewArray(int[,] array)
+void NewArray(int[,] array)
 {
-    int[,] newArray = new int[array.GetLength(0), array.GetLength(1)];
-    for (int i = 0; i < newArray.GetLength(0); i++)
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        for (int j = 0; j < newArray.GetLength(1); j++)
-        {       
-            
-                   
+        for (int j = 0; j < array.GetLength(1) - 1; j++)
+        {
+            for (int k = j + 1; k < array.GetLength(1); k++)
+            {
+                if (array[i, k] > array[i, j])
+                {
+                    int temp = array[i, j];
+                    array[i, j] = array[i, k];
+                    array[i, k] = temp;
+                }
+            }
         }
-        
-            
     }
-    return newArray;
-    
-
 }
 
 int[,] array2d = GetArray2d();
 PrintArray2d(array2d);
 Console.WriteLine();
-int[,] array = NewArray(array2d);
-Console.WriteLine(array);
+NewArray(array2d);
+PrintArray2d(array2d);
 
