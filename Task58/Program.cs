@@ -87,6 +87,7 @@ int[,] array2 = GetArray2();
 PrintArray2d(array);
 Console.WriteLine();
 PrintArray2d(array2);
+Console.WriteLine();
 int[,] matrix = MatrixArray(array, array2);
 PrintArray2d(matrix);
 
