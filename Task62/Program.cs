@@ -6,18 +6,68 @@
 // 10 09 08 07
 
 
-int[,] array = new int[4, 4];
-int firstNumber = 1;
-for (int i = 0; i < 4; i++)
+int[,] SpiralArray()
 {
-    array[i, 0] = firstNumber;
-    firstNumber++;
-
-    for (int j = 0; j < 4; j++)
+    int[,] array = new int[4, 4];
+    int firstNumber = 1;
+    int row = 0; 
+    int col = 0; 
+    int direction = 0; 
+    for (int i = 0; i < 16; i++)
     {
-        array[0, j+1] = firstNumber;
-        firstNumber++;
+    array[row, col] = firstNumber++;
+    switch (direction)
+        {
+            case 0: 
+            if (col == 3 || array[row, col + 1] != 0)
+            {
+                direction = 1; 
+                row++;
+            }
+            else
+            {
+                col++;
+            }
+            break;
+                
+            case 1: 
+            if (row == 3 || array[row + 1, col] != 0)
+            {
+                direction = 2; 
+                col--;
+            }
+            else
+            {
+                row++;
+            }
+            break;
+
+            case 2: 
+            if (col == 0 || array[row, col-1] != 0)
+            {
+                direction = 3; 
+                row--;
+            }
+            else
+            {
+                col--;
+            }
+            break;
+
+            case 3: 
+            if (row == 0 || array[row-1, col] != 0)
+            {
+                direction = 0; 
+                col++;
+            }
+            else
+            {
+                row--;
+            }
+            break;
+        }
     }
+    return array;
 }
 
 void PrintArray2d(int[,] array2d)
@@ -32,4 +82,8 @@ void PrintArray2d(int[,] array2d)
     }
 }
 
+
+int[,] array = SpiralArray();
 PrintArray2d(array);
+
+
